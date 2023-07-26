@@ -1,4 +1,4 @@
-# Handy scripts
+# Handy scripts :frog:
 > __a few useful scripts and code snippets for managing secrets and certs__
 
 
