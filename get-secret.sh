@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# A few snippets for managing secrets in Secrets Manager
+# A few snippets for getting a secret from AWS Secrets Manager
 # Comment out lines as necessary
 # Pass in the secret id eg. ./get-secret.sh my-secret
 
