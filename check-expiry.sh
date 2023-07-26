@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # A few snippets for managing certs using openssl
-# Takes file with the filename cert.pem and checks the expirty
-# Takes a Domain and Port and checks the expiry
+# Takes file with the filename cert.pem and checks the expiry
+# Takes a Domain and checks the expiry
 # Comment out lines as necessary
 
 fail() { echo "🔥  $*" >&2; exit 1; }
