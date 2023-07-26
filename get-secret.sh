@@ -19,15 +19,15 @@ done
 
 aws sts get-caller-identity &>/dev/null || fail "think you need to auth!"
 
-# Get a secret based on a secret id held in ID var
+# Get a secret based on a secret id
 aws secretsmanager get-secret-value --secret-id $ID
 
-# Compare it with a previous version
+# Get the previous version of the secret
 aws secretsmanager get-secret-value --secret-id $ID \
     --version-stage AWSPREVIOUS
 
 # Output the secret value to a file
-# Here it outputs to secret.pem - change the filename as required
+# Here it outputs to secret.txt - change the filename as required
 aws secretsmanager get-secret-value --secret-id $ID \
     --query 'SecretString' --output text > secret.txt
 
