@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
 # A few snippets for getting a secret from AWS Secrets Manager
-# Comment out lines as necessary
 # Pass in the secret id eg. ./get-secret.sh my-secret
+# Comment out lines as necessary
 
 export AWS_PAGER=""
+
 # Secret id
 ID=$1
 
@@ -26,6 +27,7 @@ aws secretsmanager get-secret-value --secret-id $ID \
     --version-stage AWSPREVIOUS
 
 # Output the secret value to a file
+# Here it outputs to secret.pem - change the filename as required
 aws secretsmanager get-secret-value --secret-id $ID \
     --query 'SecretString' --output text > secret.txt
 
