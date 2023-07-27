@@ -13,7 +13,7 @@ done
 # Checks an expiry given the domain
 DOM=$1
 if test -z $DOM; then
-	echo "No domain"
+	fail "Please provide a domain e.g. ./check-expiry-domain.sh google.com"
 else 
 	echo -n Q | openssl s_client -servername $DOM -connect $DOM:443 \
 	| openssl x509 -noout -dates
