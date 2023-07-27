@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-# A few snippets for getting a secret from AWS Secrets Manager
+# Gets a secret from AWS Secrets Manager and prints to file
 # Pass in the secret id eg. ./get-secret.sh my-secret
 # Comment out lines as necessary
 
@@ -20,17 +20,10 @@ done
 aws sts get-caller-identity &>/dev/null || fail "think you need to auth!"
 
 # Get a secret based on a secret id
-
 aws secretsmanager get-secret-value --secret-id $ID
-
-# Get the previous version of the secret
-
-aws secretsmanager get-secret-value --secret-id $ID \
-    --version-stage AWSPREVIOUS
 
 # Output the secret value to a file
 # Here it outputs to secret.txt - change the filename as required
-
 aws secretsmanager get-secret-value --secret-id $ID \
     --query 'SecretString' --output text > secret.txt
 
