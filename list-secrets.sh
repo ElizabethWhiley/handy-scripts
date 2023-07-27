@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-# A few snippets for listing multiple secrets in Secrets Manager
-# Comment out lines as necessary
+# Pass in a keyword to find and filter for secrets with that word in the name
+# eg. ./list-secrets.sh beagle will return a secret with the name beagle or dog/beagle
 
 export AWS_PAGER=""
 KEYWORD=$1
@@ -16,8 +16,7 @@ done
 
 aws sts get-caller-identity &>/dev/null || fail "think you need to auth!"
 
-# Pass in a keyword to filter for secrets with that word in the name
-# Collects a list of ARNs
+# Finds the arns of secrets with the keyword in the name
 arns=$(aws secretsmanager list-secrets \
     --filter Key="all",Values=$KEYWORD \
     | jq -r '.SecretList[].ARN')
