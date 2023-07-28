@@ -1,23 +1,26 @@
 # Handy scripts :frog:
 > __a few useful scripts and code snippets for managing secrets and certs__
 
-
-
 - `./get-secret.sh <secret-id>` 
-  
-  Takes a secret id and 
+  - takes a secret id 
   - gets the secret from secrets manager
-  - prints the current and previous version of the secret
-  - outputs the secret value to a file
+  - outputs the secret value to a file and the console
+
+- `./compare-secret.sh <secret-id>` 
+  - takes a secret id 
+  - gets the current and previous version of a secret
 
 - `./list-secrets.sh <keyword>`
-  
-  Takes a keyword and 
-  - lists all the secrets with the keyword in the name
-  - collects all the ARNs
-  - prints the value of each secret from the filtered list  
+  - takes a keyword 
+  - finds all the secrets with the keyword in the name
+  - prints the secret value
 
-- `./check-expiry.sh <domain>`
+- `./check-expiry-domain.sh <domain>`
+  - takes a domain
+  - reads the certificate
+  - prints the expiry date
 
-  - If a `cert.pem` file is present, it prints the cert expiry date
-  - If given a domain, it prints the cert expiry date for the domain
+- `./check-expiry-file.sh <filename>`
+  - takes a file name
+  - reads the certificate
+  - prints the expiry date
