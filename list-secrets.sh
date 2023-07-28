@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-# Pass in a keyword to find and filter for secrets with that word in the name
+# Pass in a keyword to find and filter for secrets with that word in the name or description
 # eg. ./list-secrets.sh beagle will return a secret with the name beagle or dog/beagle
 
 export AWS_PAGER=""
@@ -16,13 +16,12 @@ done
 
 aws sts get-caller-identity &>/dev/null || fail "think you need to auth!"
 
-# Finds the arns of secrets with the keyword in the name
+# Finds the arns of secrets with the keyword in the name or description
 arns=$(aws secretsmanager list-secrets \
     --filter Key="all",Values=$KEYWORD \
     | jq -r '.SecretList[].ARN')
 
 # Prints the secret text for each secret
 for arn in ${arns[@]}; do
-    echo $arn
-    aws secretsmanager get-secret-value --secret-id $arn --query SecretString --output text   
+    aws secretsmanager get-secret-value --secret-id $arn --output text   
 done  

@@ -1,5 +1,5 @@
 # Handy scripts :frog:
-> __a few useful scripts and code snippets for managing secrets and certs__
+> __scripts and code snippets__
 
 - `./get-secret.sh <secret-id>` 
   - takes a secret id 

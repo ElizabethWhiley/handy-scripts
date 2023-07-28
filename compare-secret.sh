@@ -12,18 +12,13 @@ ID=$1
 fail() { echo "🔥  $*" >&2; exit 1; }
 
 # checks
-for x in aws jq; do
-	hash "$x" 2>/dev/null || fail "missing dep $x"
-done
-
+hash aws 2>/dev/null || fail "missing aws cli"
 aws sts get-caller-identity &>/dev/null || fail "think you need to auth!"
 
 # Get a secret based on a secret id
-
 aws secretsmanager get-secret-value --secret-id $ID
 
 # Get the previous version of the secret
-
 aws secretsmanager get-secret-value --secret-id $ID \
     --version-stage AWSPREVIOUS
 

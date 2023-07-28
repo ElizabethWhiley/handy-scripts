@@ -4,9 +4,7 @@
 fail() { echo "🔥  $*" >&2; exit 1; }
 
 # checks
-for x in openssl; do
-	hash "$x" 2>/dev/null || fail "missing dep $x"
-done
+hash openssl 2>/dev/null || fail "missing openssl"
 
 # If the cert file exists, check the expiry
 FILE=$1
